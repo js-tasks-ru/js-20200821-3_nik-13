@@ -5,5 +5,6 @@
  * @returns {number}
  */
 export default function sum(m, n) {
-  return  m+n;  
+  if(typeof n === "number" && typeof m === "number"){
+  return  m+n;  }
 }
