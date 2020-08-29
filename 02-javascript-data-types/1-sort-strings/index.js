@@ -5,10 +5,13 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-  let newArr = arr.slice(0,arr.length)
-  switch(param){
-    case "asc" : return newArr.sort((a, b) => {return a.localeCompare(b,"ru",{caseFirst:"upper"});})
-    case "desc" : return newArr.sort((b, a) => {return a.localeCompare(b,"ru",{caseFirst:"upper"});})
+  const newArr = [...arr]
+  function arrSort(changArr, dir){
+    return changArr.sort((a,b) => {return dir*a.localeCompare(b,"ru",{caseFirst:"upper"})})
+  }
+  switch (param){
+    case "asc" :return  arrSort(newArr , 1);
+    case "desc" :return  arrSort(newArr , -1);
     default : console.log("err")
   }
 }

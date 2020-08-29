@@ -7,7 +7,7 @@
 export const omit = (obj, ...fields) => {
   const newArr2 = []
   Object.entries(obj).forEach((elem)=>{
-    if(fields.every(function(opt){return opt !== elem[0]})){
+    if(!fields.includes(elem[0],0)){
       newArr2.push(elem)
     }})
   const newObj = Object.fromEntries(newArr2)

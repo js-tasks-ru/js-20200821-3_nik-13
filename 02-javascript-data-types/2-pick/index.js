@@ -7,7 +7,7 @@
 export const pick = (obj, ...fields) => {
   const newArr2 = []
   Object.entries(obj).forEach((elem)=>{
-    if(fields.some(function(opt){return opt === elem[0]})){
+    if(fields.includes(elem[0],0)){
       newArr2.push(elem)
     }})
   const newObj = Object.fromEntries(newArr2)
