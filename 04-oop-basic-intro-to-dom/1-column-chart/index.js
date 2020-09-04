@@ -1,5 +1,5 @@
 export default class ColumnChart {
-  element = document.createElement('div')
+  element = {}
   chartHeight = 50
   constructor( {data = [],label = "",value = 0,link = ""} = {}) {
     this.data = this.getDataMod(data)
@@ -10,7 +10,7 @@ export default class ColumnChart {
   }
   getDataMod(data) {
       const maxValue = Math.max(...data);
-      const scale = 50 / maxValue;
+      const scale = this.chartHeight / maxValue;
 
       return data.map(item => {
         return {
@@ -53,13 +53,11 @@ export default class ColumnChart {
     }else{
       return `
           <div class="column-chart column-chart_loading">
-
            <div class="column-chart__title">${this.label}   ${this.getLink()} </div>
           <div class="column-chart__container">
                <div class="column-chart__header">${this.value}</div>
                <div class="column-chart__chart">${this.getColumn()}</div>
-           </div>
-           
+           </div>           
             </div>`
     }
   }
