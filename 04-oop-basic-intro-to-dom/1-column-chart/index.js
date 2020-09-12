@@ -20,13 +20,10 @@ export default class ColumnChart {
       });
   }
   update(newData){
-    newData =  this.getDataMod(newData)
+    const newArr =  this.getDataMod(newData)
     const changeData =  this.element.querySelector(".column-chart__chart")
-    let string = ""
-    for(let elem of newData){
-      string += `<div style="--value:${elem['value']}" data-tooltip="${elem['percent']}"></div>`
-    }
-    return  changeData.innerHTML = string
+    changeData.innerHTML =  newArr.map( elem => {
+      return `<div style="--value:${elem['value']}" data-tooltip="${elem['percent']}"></div>`}).join()
   }
   getLink(){
     if(this.link){
@@ -40,26 +37,15 @@ export default class ColumnChart {
     return string
   }
   getTemplate(){
-    if(this.data.length > 0){
-      return `
-        <div class="column-chart">
-           <div class="column-chart__title">${this.label}   ${this.getLink()} </div>
-           <div class="column-chart__container">
-               <div class="column-chart__header">${this.value}</div>
-               <div class="column-chart__chart">${this.getColumn()}</div>
-           </div>
-        </div>
-        `
-    }else{
-      return `
-          <div class="column-chart column-chart_loading">
+
+   return       `<div class="column-chart ${(this.data.length)? "" : "column-chart_loading"}">
            <div class="column-chart__title">${this.label}   ${this.getLink()} </div>
           <div class="column-chart__container">
                <div class="column-chart__header">${this.value}</div>
                <div class="column-chart__chart">${this.getColumn()}</div>
            </div>           
             </div>`
-    }
+
   }
   render(){
     const element = document.createElement("div")
@@ -70,6 +56,6 @@ export default class ColumnChart {
     this.element.remove()
   }
   destroy(){
-    this.element.remove()
+    this.remove()
   }
 }
