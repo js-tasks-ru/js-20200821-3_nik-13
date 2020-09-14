@@ -31,10 +31,11 @@ export default class ColumnChart {
     }
   }
   getColumn(){
-    let string = ""
-    for(let elem of this.data){
-      string += `<div style="--value:${elem['value']} ; --chart-height: ${this.chartHeight}" data-tooltip="${elem['percent']}"></div> `}
-    return string
+    const arr = [... this.data]
+    return arr.map(elem => {
+     return  `<div style="--value:${elem['value']} ; --chart-height: ${this.chartHeight}" data-tooltip="${elem['percent']}"></div> `}
+     ).join("")
+
   }
   getTemplate(){
 

@@ -57,9 +57,9 @@ export default class SortableTable {
         case "number" :
           return dir*(a[field] - b[field]);
         case "string" :
-          return dir*a[field].localeCompare(b[field],"run",{caseFirst:"upper"});
+          return dir*a[field].localeCompare(b[field],"ru");
         default :
-          return dir*a[field].localeCompare(b[field],"run",{caseFirst:"upper"});
+          return dir*a[field].localeCompare(b[field],"ru");
       }})}
   getSubElements(element) {
     const elements = element.querySelectorAll('[data-element]');
